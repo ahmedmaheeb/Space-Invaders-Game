@@ -4,6 +4,7 @@ import main.model.Bullet;
 import main.model.Dimension2D;
 import main.model.PlayerShip;
 import main.model.Point2D;
+import main.model.devil.BigDevil;
 import main.model.devil.Devil;
 import main.model.devil.SmallDevil;
 
@@ -21,6 +22,7 @@ public class GameBoard {
 	private final List<Devil> devils = new ArrayList<>();
 	private final List<Bullet> playerBullets = new ArrayList<>();
 	private final List<Bullet> devilBullets = new ArrayList<>();
+	private boolean addBigDevil = false;
 
 	private SoundPlayer soundPlayer;
 	private GameOutcome gameOutcome;
@@ -129,6 +131,11 @@ public class GameBoard {
 		while (devils.size() < points / POINTS_PER_DEVIL + 5) {
 			devils.add(new SmallDevil(new Point2D(random.nextDouble() * size.getWidth(), 0)));
 		}
+		if(addBigDevil) {
+			//make sure big devil does not appear very close to the side
+			devils.add(new BigDevil(new Point2D(50 + random.nextDouble() * (size.getWidth() - 100), 50), this));
+			addBigDevil = false;
+		}
 	}
 
 	public void addBullet(Bullet bullet) {
@@ -138,6 +145,9 @@ public class GameBoard {
 
 	public void increaseScore(int points) {
 		this.points += points;
+		if(this.points % 100 == 0) {
+			addBigDevil = true;
+		}
 	}
 
 	public int getPoints() {
