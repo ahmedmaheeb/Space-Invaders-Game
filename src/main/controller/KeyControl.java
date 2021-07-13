@@ -21,6 +21,14 @@ public class KeyControl {
         scene.addEventHandler(KeyEvent.KEY_PRESSED, this::keyPressed);
         scene.addEventHandler(KeyEvent.KEY_RELEASED, this::keyReleased);
         actionTimer();
+        gameView.setKeyControl(this);
+    }
+
+    public void reset() {
+        right = false;
+        left = false;
+        shoot = false;
+        canShoot = true;
     }
 
     private void keyPressed(KeyEvent event) {
@@ -29,7 +37,10 @@ public class KeyControl {
             case RIGHT -> right = true;
             case LEFT -> left = true;
             case SPACE -> shoot = true;
-            case ESCAPE -> endGame();
+            case ESCAPE -> {
+                reset();
+                stopGame();
+            }
         }
     }
 
@@ -82,7 +93,7 @@ public class KeyControl {
         gameView.getGameBoard().getPlayerShip().moveRight();
     }
 
-    private void endGame() {
+    private void stopGame() {
         gameView.stopGame();
     }
 }

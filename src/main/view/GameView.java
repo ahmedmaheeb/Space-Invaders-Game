@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import main.controller.GameBoard;
 import main.controller.GameOutcome;
+import main.controller.KeyControl;
 import main.controller.SoundPlayer;
 import main.model.Bullet;
 import main.model.Dimension2D;
@@ -46,6 +47,8 @@ public class GameView extends Canvas {
     private Timer gameTimer;
 
     private GameBoard gameBoard;
+
+    private KeyControl keyControl;
 
     private final GameToolBar gameToolBar;
 
@@ -157,6 +160,7 @@ public class GameView extends Canvas {
      */
     public void stopGame() {
         if (this.gameBoard.isRunning()) {
+            this.keyControl.reset();
             this.gameBoard.stopGame();
             this.gameToolBar.updateToolBarStatus(false);
             this.gameTimer.cancel();
@@ -216,5 +220,9 @@ public class GameView extends Canvas {
             alert.showAndWait();
             this.setup();
         });
+    }
+
+    public void setKeyControl(KeyControl keyControl) {
+        this.keyControl = keyControl;
     }
 }
