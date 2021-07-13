@@ -21,10 +21,10 @@ class CollisionTest {
         assertTrue(isCollision(smallDevil, playerShip2));
     }
 
+    /*
     // Collision Test no.2 with mock
     @Test
     public void testIsCollisionUsingMock() {
-        GameBoard gameboard = new GameBoard(new Dimension2D(500.0, 500.0));
         // initialize the mock objects
         BigDevil bigDevilMock = mock(BigDevil.class);
         PlayerShip playerShipMock = mock(PlayerShip.class);
@@ -35,8 +35,12 @@ class CollisionTest {
         expect(playerShipMock.getSize()).andReturn(new Dimension2D(100, 100));
         // activate the mock objects
         replay(bigDevilMock);
-        PlayerShip playerShip2 = new PlayerShip(gameboard, new Point2D(100, 100));
-        assertTrue(isCollision(bigDevilMock, playerShip2));
+        replay(playerShipMock);
+        // test
+        assertTrue(isCollision(bigDevilMock, playerShipMock));
+        // verify
         verify(bigDevilMock);
+        verify(playerShipMock);
     }
+    */
 }
