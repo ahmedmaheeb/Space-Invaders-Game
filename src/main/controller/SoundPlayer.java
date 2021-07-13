@@ -1,5 +1,6 @@
 package main.controller;
 
+import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -8,10 +9,13 @@ import java.net.URL;
 public class SoundPlayer {
 
     private static final String BACKGROUND_MUSIC_FILE = "Music.wav";
+    private static final String PLAYER_DEAD_SOUND_FILE = "playershot.wav";
     private final MediaPlayer musicPlayer;
+    private final AudioClip playerDeadSoundPlayer;
 
     public SoundPlayer() {
         this.musicPlayer = new MediaPlayer(new Media(convertNameToUrl(BACKGROUND_MUSIC_FILE)));
+        this.playerDeadSoundPlayer = new AudioClip(convertNameToUrl(PLAYER_DEAD_SOUND_FILE));
     }
 
     public void playMusic() {
@@ -27,6 +31,10 @@ public class SoundPlayer {
         if (isPlayingMusic()) {
             this.musicPlayer.stop();
         }
+    }
+
+    public void playPlayerShotSound() {
+        playerDeadSoundPlayer.play();
     }
 
     private String convertNameToUrl(String fileName) {

@@ -88,12 +88,14 @@ public class GameBoard {
 			if (Collision.isCollision(devil, playerShip)) {
 				toBeRemovedDevil.add(devil);
 				playerShip.decrementLives();
+				soundPlayer.playPlayerShotSound();
 			}
 		}
 		for (Bullet bullet : devilBullets) {
 			if (Collision.isCollision(bullet, playerShip)) {
 				toBeRemovedDevilBullet.add(bullet);
 				playerShip.decrementLives();
+				soundPlayer.playPlayerShotSound();
 			}
 		}
 
