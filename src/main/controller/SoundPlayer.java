@@ -9,7 +9,7 @@ import java.net.URL;
 public class SoundPlayer {
 
     private static final String BACKGROUND_MUSIC_FILE = "Music.wav";
-    private static final String PLAYER_DEAD_SOUND_FILE = "playershot.wav";
+    private static final String PLAYER_DEAD_SOUND_FILE = "playershot.mp3";
     private final MediaPlayer musicPlayer;
     private final AudioClip playerDeadSoundPlayer;
 
