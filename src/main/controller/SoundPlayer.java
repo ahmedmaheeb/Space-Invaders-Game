@@ -39,6 +39,7 @@ public class SoundPlayer {
 
     private String convertNameToUrl(String fileName) {
         URL musicSourceUrl = getClass().getClassLoader().getResource(fileName);
+
         if (musicSourceUrl == null) {
             throw new IllegalArgumentException(String.format("The file %s could not be found", fileName));
         }
